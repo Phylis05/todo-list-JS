@@ -1,8 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
 import Project from './classes/project';
+import TodoItem from './classes/todo-item';
 
 const projects = JSON.parse(localStorage.getItem('projects')) || [];
+const todos = JSON.parse(localStorage.getItem('todos')) || [];
 
 if (projects.includes('Default') !== true) {
   const defaultProject = new Project('Default');
@@ -17,6 +19,13 @@ const projectName = document.querySelector('#name');
 const projectForm = document.querySelector('#project-form');
 const projectsDiv = document.querySelector('.projects');
 const dropdown = document.querySelector('#select');
+const toDoForm = document.querySelector('#todo-form');
+
+const title = document.querySelector('#title');
+const description = document.querySelector('#description');
+const select = document.querySelector('#select');
+const dueDate = document.querySelector('#due-date');
+const priority = document.querySelector('#priority');
 
 const updateProjectList = (projects) => {
   dropdown.innerHTML = projects.map((project, index) => `<option
@@ -53,4 +62,15 @@ const createProject = (event) => {
   // this.reset();
 };
 
+const createToDo = (event) => {
+  event.preventDefault();
+  console.log(select.value);
+  // this.reset();
+  const newTodo = new TodoItem(title.value, description.value, dueDate.value, priority.value, select.value);
+  console.log(newTodo);
+  todos.push(newTodo);
+  localStorage.setItem('todos', JSON.stringify(todos));
+};
+
 projectForm.addEventListener('submit', createProject);
+toDoForm.addEventListener('submit', createToDo);

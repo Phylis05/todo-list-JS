@@ -8,12 +8,13 @@
 <body>
   <div class="container">
     <header>
-
+        <h1 class="text-center mt-5">To do List</h1>
     </header>
     <main>
       <div class="row h-100 mt-5">
 
         <div class="col-lg-6">
+        <h3 class="text-center">Create Project</h3>
           <form action="" id= "project-form">
             <label for="name">Project name:</label>
             <input type="text" name="name" class="form-control" id="name">
@@ -21,22 +22,16 @@
           </form>
 
 
-          <h3 class="text-center">To do List</h3>
-          <form action="submit">
+          <h3 class="text-center mt-5">Create Todo </h3>
+          <form action="" id="todo-form">
               <label for="title">Title:</label>
               <input type="text" name="title"  class="form-control" id="title">
 
               <label for="description">Description:</label>
               <input type="text" name="description" class="form-control" id="description">
 
-              <label for="description">Projects:</label>
-              <!-- <input type="text" name="description" class="form-control" id="description"> -->
-              <select class="browser-default custom-select" id="select">
-                <!-- <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option> -->
-              </select>
+              <label for="select">Projects:</label>
+              <select class="browser-default custom-select" id="select"></select>
 
               <label for="due-date">Due Date:</label>
               <input type="date" name="due-date"  class="form-control" id="due-date">
