@@ -8,12 +8,12 @@ const todos = JSON.parse(localStorage.getItem('todos')) || [];
 
 if (projects.includes('Default') !== true) {
   const defaultProject = new Project('Default');
-  console.log(`default: ${defaultProject.name}`);
+  // console.log(`default: ${defaultProject.name}`);
   projects.push(defaultProject.name);
   localStorage.setItem('projects', JSON.stringify(projects));
 }
 
-console.log(projects);
+// console.log(projects);
 
 const projectName = document.querySelector('#name');
 const projectForm = document.querySelector('#project-form');
@@ -39,10 +39,21 @@ updateProjectList(projects);
 const displayProject = (projects) => {
   projectsDiv.innerHTML = projects.map((name, index) => `<div class="card mb-2">
             <div class="card-body" data-index="${index}">
-              <h5 class="card-title">${name}</h5>
+               <h5 class="card-title">${name}</h5>
+               ${displayTodos(todos, index)}
               <a href="#" class="btn btn-success float-right">Add to do</a>
             </div>
           </div>`).join('');
+};
+
+const displayTodos = (todos, projectIndex) => {
+  // for (let i = 0; i < todos.length; i += 1) {
+  //   if (todos[i].projectId === projectIndex) {
+  //     return `<p>${todos[i].title}</p>
+  //     <p>${todos[i].dueDate}</p>`;
+  //   }
+  // }
+  return 'hello';
 };
 
 displayProject(projects);
@@ -51,7 +62,7 @@ const createProject = (event) => {
   event.preventDefault();
 
   const newProject = new Project(projectName.value);
-  console.log(`name: ${newProject.name}`);
+  // console.log(`name: ${newProject.name}`);
   if (projects.includes(newProject.name) !== true) {
     projects.push(newProject.name);
     localStorage.setItem('projects', JSON.stringify(projects));
@@ -64,10 +75,10 @@ const createProject = (event) => {
 
 const createToDo = (event) => {
   event.preventDefault();
-  console.log(select.value);
+  // console.log(select.value);
   // this.reset();
   const newTodo = new TodoItem(title.value, description.value, dueDate.value, priority.value, select.value);
-  console.log(newTodo);
+  // console.log(newTodo);
   todos.push(newTodo);
   localStorage.setItem('todos', JSON.stringify(todos));
 };
