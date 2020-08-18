@@ -1,1 +1,2 @@
-alert("let's try this");
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './style.css';
