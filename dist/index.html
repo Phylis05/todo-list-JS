@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>To Do List</title>
 </head>
 <body>
   <div class="container">
@@ -14,21 +14,33 @@
       <div class="row h-100 mt-5">
 
         <div class="col-lg-6">
-          <form action="submit">
+          <form action="" id= "project-form">
             <label for="name">Project name:</label>
             <input type="text" name="name" class="form-control" id="name">
-            <button type="submit" id= "project-btn" class= "btn btn-primary mt-2">Create project</button>
+            <button type="submit" class= "btn btn-primary mt-2">Create project</button>
           </form>
+
+
           <h3 class="text-center">To do List</h3>
           <form action="submit">
               <label for="title">Title:</label>
               <input type="text" name="title"  class="form-control" id="title">
+
               <label for="description">Description:</label>
               <input type="text" name="description" class="form-control" id="description">
+
               <label for="description">Projects:</label>
-              <input type="text" name="description" class="form-control" id="description">
+              <!-- <input type="text" name="description" class="form-control" id="description"> -->
+              <select class="browser-default custom-select" id="select">
+                <!-- <option selected>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option> -->
+              </select>
+
               <label for="due-date">Due Date:</label>
               <input type="date" name="due-date"  class="form-control" id="due-date">
+
               <label for="priority">Priority:</label>
               <select class="form-control" id="priority">
                 <option>Low</option>
@@ -41,13 +53,13 @@
         </div>
 
         <div class="col-lg-6 mt-4 projects">
-          <div class="card" >
+          <!-- <div class="card" >
             <div class="card-body">
               <h5 class="card-title">Default</h5>
               <a href="#" class="btn btn-success float-right">Add to do</a>
 
             </div>
-          </div>
+          </div> -->
 
         </div>
 
