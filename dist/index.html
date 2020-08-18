@@ -8,48 +8,50 @@
 <body>
   <div class="container">
     <header>
-      
+
     </header>
     <main>
       <div class="row h-100 mt-5">
-        <div class="col-lg-6">
-       <form action="submit">
-         <label for="name">Project name:</label>
-         <input type="text" name="name" class="form-control" id="name">
-         <button type="submit" class= "btn btn-primary mt-2">Create project</button>
-       </form>
-       <h3 class="text-center">To do List</h3>
-        <form action="submit">
-          <label for="title">Title:</label>
-          <input type="text" name="title"  class="form-control" id="title">
-          <label for="description">Description:</label>
-          <input type="text" name="description" class="form-control" id="description">
-          <label for="due-date">Due Date:</label>
-          <input type="date" name="due-date"  class="form-control" id="due-date">
-          <label for="priority">Priority:</label>
-          <select class="form-control" id="priority">
-            <option>Low</option>
-            <option>Medium</option>
-            <option>High</option>
-          </select>
-          <button type="submit" class="btn btn-primary mt-2">Create todo</button>
 
-        </form>
-      </div>
-        <div class="col-lg-6 mt-4">
-          <div class="card" style="width: 18rem;">
-            <img src="https://knilt.arcc.albany.edu/images/9/99/To-do.jpg" class="card-img-top" alt="...">
+        <div class="col-lg-6">
+          <form action="submit">
+            <label for="name">Project name:</label>
+            <input type="text" name="name" class="form-control" id="name">
+            <button type="submit" id= "project-btn" class= "btn btn-primary mt-2">Create project</button>
+          </form>
+          <h3 class="text-center">To do List</h3>
+          <form action="submit">
+              <label for="title">Title:</label>
+              <input type="text" name="title"  class="form-control" id="title">
+              <label for="description">Description:</label>
+              <input type="text" name="description" class="form-control" id="description">
+              <label for="description">Projects:</label>
+              <input type="text" name="description" class="form-control" id="description">
+              <label for="due-date">Due Date:</label>
+              <input type="date" name="due-date"  class="form-control" id="due-date">
+              <label for="priority">Priority:</label>
+              <select class="form-control" id="priority">
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+              </select>
+              <button type="submit" class="btn btn-primary mt-2">Create todo</button>
+
+          </form>
+        </div>
+
+        <div class="col-lg-6 mt-4 projects">
+          <div class="card" >
             <div class="card-body">
               <h5 class="card-title">Default</h5>
-              <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-              <a href="#" class="btn btn-primary">Add to do</a>
+              <a href="#" class="btn btn-success float-right">Add to do</a>
 
             </div>
           </div>
 
         </div>
-      
-    </main> 
+
+    </main>
   </div>
   <script src ='main.js'></script>
 </body>
