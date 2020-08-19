@@ -27,6 +27,8 @@ const select = document.querySelector('#select');
 const dueDate = document.querySelector('#due-date');
 const priority = document.querySelector('#priority');
 
+// const deleteBtns = document.querySelectorAll('.delete-btn');
+
 const updateProjectList = (projects) => {
   dropdown.innerHTML = projects.map((project, index) => `<option
   value="${index}">${project}</option>
@@ -35,15 +37,30 @@ const updateProjectList = (projects) => {
 
 updateProjectList(projects);
 
+const deleteTodo = (event, todos) => {
+  const { index } = event.target.dataset;
+  console.log(index);
+  todos.splice(index, 1);
+  // localStorage.removeItem(todos[index]);
+  // eslint-disable-next-line no-use-before-define
+  displayProject(projects);
+};
 
 const displayProject = (projects) => {
   projectsDiv.innerHTML = projects.map((name, index) => `<div class="card mb-2">
             <div class="card-body" data-index="${index}">
                <h5 class="card-title">${name}</h5>
                ${displayTodos(todos, index)}
-              <a href="#" class="btn btn-success float-right">Add to do</a>
+               
             </div>
           </div>`).join('');
+  const deleteBtns = document.querySelectorAll('.delete-btn');
+  console.log(deleteBtns);
+  deleteBtns.forEach((button) => {
+    // eslint-disable-next-line no-use-before-define
+    button.removeEventListener('click', (event) => deleteTodo(event, todos));
+    button.addEventListener('click', (event) => deleteTodo(event, todos));
+  });
 };
 
 const colorPriority = (todo) => {
@@ -63,10 +80,12 @@ const displayTodos = (todos, projectIndex) => {
       todoList += `<div style='background: ${colorPriority(todos[i])}; margin: 2em; padding: 1em; color: #fff;'>
         <span>${todos[i].title}</span>
         <span>${todos[i].dueDate}</span>
+        <button class = 'delete-btn' data-index = '${i}'>Delete</button>
       </div>`;
     }
   }
   return todoList;
+  
 };
 
 displayProject(projects);
@@ -97,7 +116,6 @@ const createToDo = (event) => {
   displayProject(projects);
 };
 
-
-
 projectForm.addEventListener('submit', createProject);
 toDoForm.addEventListener('submit', createToDo);
+// deleteBtn.addEventListener('click', (event) => deleteTodo(event, todoItem));
