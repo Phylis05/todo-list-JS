@@ -46,14 +46,27 @@ const displayProject = (projects) => {
           </div>`).join('');
 };
 
+const colorPriority = (todo) => {
+  if (todo.priority === 'High') {
+    return 'red';
+  } if (todo.priority === 'Medium') {
+    return 'yellow';
+  }
+  return 'green';
+};
+
 const displayTodos = (todos, projectIndex) => {
-  // for (let i = 0; i < todos.length; i += 1) {
-  //   if (todos[i].projectId === projectIndex) {
-  //     return `<p>${todos[i].title}</p>
-  //     <p>${todos[i].dueDate}</p>`;
-  //   }
-  // }
-  return 'hello';
+  let todoList = '';
+  for (let i = 0; i < todos.length; i += 1) {
+    // eslint-disable-next-line radix
+    if (parseInt(todos[i].projectId) === projectIndex) {
+      todoList += `<div style='background: ${colorPriority(todos[i])}; margin: 2em; padding: 1em; color: #fff;'>
+        <span>${todos[i].title}</span>
+        <span>${todos[i].dueDate}</span>
+      </div>`;
+    }
+  }
+  return todoList;
 };
 
 displayProject(projects);
@@ -81,7 +94,10 @@ const createToDo = (event) => {
   // console.log(newTodo);
   todos.push(newTodo);
   localStorage.setItem('todos', JSON.stringify(todos));
+  displayProject(projects);
 };
+
+
 
 projectForm.addEventListener('submit', createProject);
 toDoForm.addEventListener('submit', createToDo);
