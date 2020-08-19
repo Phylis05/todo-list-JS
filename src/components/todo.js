@@ -35,11 +35,57 @@ const displayTodos = (todos, projectIndex) => {
       todoList += `<div style='background: ${colorPriority(todos[i])}; margin: 2em; padding: 1em; color: #fff;'>
         <span>${todos[i].title}</span>
         <span>${todos[i].dueDate}</span>
-        <button class = 'delete-btn float-right' data-index = '${i}'>Delete</button>
+        <button class = 'delete-btn float-right'  data-index = '${i}'>Delete</button>
+        <button class = 'view-btn float-right' data-toggle="modal" data-index = '${i}'>View</button>
+        <button class = 'edit-btn float-right' data-toggle="modal" data-index = '${i}'>Edit</button>
       </div>`;
     }
   }
   return todoList;
+};
+
+const viewTodo = (event, todos) => {
+  const { index } = event.target.dataset;
+  return `
+  <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="projectModalLabel">New message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="title-name" class="col-form-label">Title:</label>
+                    <span>${todos[index].title}</span>
+                  </div>
+                  <div class="form-group">
+                    <label for="description-text" class="col-form-label">Description:</label>
+                    <span>${todos[index].description}</span>
+                  </div> <div class="form-group">
+                    <label for="date-due" class="col-form-label">Due Date:</label>
+                    <span>${todos[index].dueDate}</span>
+                  </div> 
+                  <div class="form-group">
+                    <label for="priority-level" class="col-form-label">Priority:</label>
+                    <select class="form-control" id="priority-level">
+                      <option>Low</option>
+                      <option>Medium</option>
+                      <option>High</option>
+                    </select>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="close-btn" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="save-btn">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>`;
 };
 
 const deleteTodo = (event, todos) => {

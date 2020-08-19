@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
 import Project from './classes/project';
-import { projectForm, toDoForm } from './dom';
+import { projectForm, toDoForm, editBtn, viewBtn } from './dom';
 import {
   projects, updateProjectList, createProject, displayProject,
 } from './components/project';
@@ -20,3 +20,13 @@ displayProject(projects);
 
 projectForm.addEventListener('submit', createProject);
 toDoForm.addEventListener('submit', createToDo);
+
+editBtn.forEach((btn) => {
+  btn.removeEventListener('click', editTodo);
+  btn.addEventListener('click', editTodo);
+});
+
+viewBtn.forEach((btn) => {
+  btn.removeEventListener('click', viewEvent);
+  btn.addEventListener('click', viewEvent);
+});
