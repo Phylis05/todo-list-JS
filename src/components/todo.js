@@ -36,8 +36,7 @@ const displayTodos = (todos, projectIndex) => {
         <span>${todos[i].title}</span>
         <span>${todos[i].dueDate}</span>
         <p><button class = 'delete-btn float-right'  data-index = '${i}'>Delete</button>
-        <button class = 'view-btn float-right' data-toggle="modal" data-index = '${i}' data-target="#projectModal">View</button>
-        <button class = 'edit-btn float-right' data-toggle="modal" data-index = '${i}'>Edit</button></p>
+        <button class = 'view-btn float-right' data-toggle="modal" data-index = '${i}' data-target="#projectModal">View/Edit</button>
       </div>
       `;
     }
@@ -46,8 +45,6 @@ const displayTodos = (todos, projectIndex) => {
 };
 
 const viewTodo = (event, todos) => {
-  console.log('hello');
-  console.log(event.target.dataset);
   const { index } = event.target.dataset;
   const title = document.querySelector('#title-name');
   const description = document.querySelector('#description-text');
@@ -58,48 +55,21 @@ const viewTodo = (event, todos) => {
   dateDue.innerHTML = `${todos[index].dueDate}`;
   priorityLevel.value = `${todos[index].priority}`;
 
-  // const { index } = event.target.dataset;
-  // console.log(index);
-  // return `
-  // <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel" aria-hidden="true">
-  //         <div class="modal-dialog" role="document">
-  //           <div class="modal-content">
-  //             <div class="modal-header">
-  //               <h5 class="modal-title" id="projectModalLabel">New message</h5>
-  //               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-  //                 <span aria-hidden="true">&times;</span>
-  //               </button>
-  //             </div>
-  //             <div class="modal-body">
-  //               <form>
-  //                 <div class="form-group">
-  //                   <label for="title-name" class="col-form-label">Title:</label>
-  //                   <span>${todos[index].title}</span>
-  //                 </div>
-  //                 <div class="form-group">
-  //                   <label for="description-text" class="col-form-label">Description:</label>
-  //                   <span>${todos[index].description}</span>
-  //                 </div> <div class="form-group">
-  //                   <label for="date-due" class="col-form-label">Due Date:</label>
-  //                   <span>${todos[index].dueDate}</span>
-  //                 </div>
-  //                 <div class="form-group">
-  //                   <label for="priority-level" class="col-form-label">Priority:</label>
-  //                   <select class="form-control" id="priority-level">
-  //                     <option>Low</option>
-  //                     <option>Medium</option>
-  //                     <option>High</option>
-  //                   </select>
-  //                 </div>
-  //               </form>
-  //             </div>
-  //             <div class="modal-footer">
-  //               <button type="button" class="btn btn-secondary" id="close-btn" data-dismiss="modal">Close</button>
-  //               <button type="button" class="btn btn-primary" id="save-btn">Save</button>
-  //             </div>
-  //           </div>
-  //         </div>
-  //       </div>`;
+};
+
+const saveTodo = (event, todos) => {
+  const { index } = event.target.dataset;
+  const titleValue = document.querySelector('#title-name').value;
+  const descriptionValue = document.querySelector('#description-text').value;
+  const dateDueValue = document.querySelector('#date-due').value;
+  const priorityLevelValue = document.querySelector('#priority-level').value;
+  todos[index].title = titleValue;
+  todos[index].description = descriptionValue;
+  todos[index].dateDue = dateDueValue;
+  todos[index].priority = priorityLevelValue;
+
+  console.log(todos);
+  localStorage.setItem('todos', JSON.stringify(todos));
 };
 
 const deleteTodo = (event, todos) => {
@@ -110,5 +80,5 @@ const deleteTodo = (event, todos) => {
 };
 
 export {
-  displayTodos, deleteTodo, todos, createToDo, viewTodo
+  displayTodos, deleteTodo, todos, createToDo, viewTodo, saveTodo,
 };

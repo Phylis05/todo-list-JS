@@ -10,9 +10,9 @@ const select = document.querySelector('#select');
 const dueDate = document.querySelector('#due-date');
 const priority = document.querySelector('#priority');
 
-const editBtn = document.querySelectorAll('.edit-btn');
+const saveBtn = document.querySelectorAll('#save-btn');
 
 export {
   projectName, projectForm, projectsDiv, dropdown, toDoForm, title,
-  description, select, dueDate, priority, editBtn,
+  description, select, dueDate, priority, saveBtn,
 };
