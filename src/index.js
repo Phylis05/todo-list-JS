@@ -1,11 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap';
 import './style.css';
 import Project from './classes/project';
 import { projectForm, toDoForm, editBtn, viewBtn } from './dom';
 import {
   projects, updateProjectList, createProject, displayProject,
 } from './components/project';
-import { createToDo } from './components/todo';
+import { createToDo, viewTodo, todos } from './components/todo';
 
 
 if (projects.includes('Default') !== true) {
@@ -26,7 +27,3 @@ editBtn.forEach((btn) => {
   btn.addEventListener('click', editTodo);
 });
 
-viewBtn.forEach((btn) => {
-  btn.removeEventListener('click', viewEvent);
-  btn.addEventListener('click', viewEvent);
-});

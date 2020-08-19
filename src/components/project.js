@@ -1,7 +1,7 @@
 import { projectName, projectsDiv, dropdown } from '../dom';
 import Project from '../classes/project';
 // eslint-disable-next-line import/no-cycle
-import { displayTodos, deleteTodo, todos } from './todo';
+import { displayTodos, deleteTodo, todos, viewTodo } from './todo';
 
 const projects = JSON.parse(localStorage.getItem('projects')) || [];
 
@@ -31,7 +31,7 @@ const displayProject = (projects) => {
             <div class="card-body" data-index="${index}">
                <h5 class="card-title">${name}</h5>
                ${displayTodos(todos, index)}
-               
+
             </div>
           </div>`).join('');
   const deleteBtns = document.querySelectorAll('.delete-btn');
@@ -40,6 +40,14 @@ const displayProject = (projects) => {
     button.removeEventListener('click', (event) => deleteTodo(event, todos));
     button.addEventListener('click', (event) => deleteTodo(event, todos));
   });
+  const viewBtn = document.querySelectorAll('.view-btn');
+
+  viewBtn.forEach((btn) => {
+    btn.removeEventListener('click', (event) => viewTodo(event, todos));
+    btn.addEventListener('click', (event) => viewTodo(event, todos));
+  });
+
+  console.log(viewBtn);
 };
 
 export {
