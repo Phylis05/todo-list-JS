@@ -48,7 +48,6 @@ const displayProject = (projects) => {
     btn.removeEventListener('click', (event) => viewTodo(event, todos));
     btn.addEventListener('click', (event) => viewTodo(event, todos));
   });
-
 };
 
 export {
