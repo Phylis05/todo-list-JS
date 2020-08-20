@@ -8,6 +8,10 @@ import {
 const projects = JSON.parse(localStorage.getItem('projects')) || [];
 
 const createProject = (event) => {
+  if (projectName.value === '') {
+    // eslint-disable-next-line no-alert
+    alert('Project must have a name');
+  }
   event.preventDefault();
 
   const newProject = new Project(projectName.value);

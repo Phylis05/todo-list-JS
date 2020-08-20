@@ -9,6 +9,7 @@ const description = document.querySelector('#description');
 const select = document.querySelector('#select');
 const dueDate = document.querySelector('#due-date');
 const priority = document.querySelector('#priority');
+const stat = document.querySelector('#status');
 
 const saveBtns = document.querySelectorAll('a');
 
@@ -33,5 +34,6 @@ export {
   dueDate,
   priority,
   saveBtns,
+  stat,
   closeOneModal,
 };

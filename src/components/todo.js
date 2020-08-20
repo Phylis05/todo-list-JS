@@ -4,18 +4,26 @@ import {
   select,
   dueDate,
   priority,
+  stat,
   closeOneModal,
 } from '../dom';
 import TodoItem from '../classes/todo-item';
 // eslint-disable-next-line import/no-cycle
 import { projects, displayProject } from './project';
+import '../style.css';
 
 const todos = JSON.parse(localStorage.getItem('todos')) || [];
 
 const createToDo = (event) => {
   event.preventDefault();
-  const newTodo = new TodoItem(title.value, description.value,
-    dueDate.value, priority.value, select.value);
+  const newTodo = new TodoItem(
+    title.value,
+    description.value,
+    dueDate.value,
+    priority.value,
+    select.value,
+    stat.value,
+  );
   todos.push(newTodo);
   localStorage.setItem('todos', JSON.stringify(todos));
   displayProject(projects);
@@ -37,11 +45,13 @@ const displayTodos = (todos, projectIndex) => {
     // eslint-disable-next-line radix
     if (parseInt(todos[i].projectId) === projectIndex) {
       // eslint-disable-next-line no-use-before-define
-      todoList += `<div style='background: ${colorPriority(todos[i])}; margin: 2em; padding: 3em; color: #fff;'>
-        <span>${todos[i].title}</span>
-        <span class='float-right'>${todos[i].dueDate}</span>
-        <p><button class = 'delete-btn float-right m-2'  data-index = '${i}'>Delete</button>
-        <button class = 'view-btn float-right m-2' data-toggle="modal" data-index = '${i}' data-target="#projectModal">View/Edit</button>
+      todoList += `<div style='background: ${colorPriority(todos[i])};' class='todo-div'>
+        <span class='${todos[i].status === '1' ? 'complete' : ''}'>${todos[i].title}</span>
+        <p><span class='float-right'>${todos[i].dueDate}</span></p>
+        <p>
+          <button class='delete-btn float-right m-2'  data-index='${i}'>Delete</button>
+          <button class='view-btn float-right m-2' data-toggle="modal" data-index='${i}' data-target="#projectModal">View/Edit</button>
+        </p>
       </div>
       `;
     }
@@ -69,9 +79,11 @@ const saveTodo = (event, todos) => {
   const descriptionValue = document.querySelector('#description-text').value;
   const dateDueValue = document.querySelector('#date-due').value;
   const priorityLevelValue = document.querySelector('#priority-level').value;
+  const modalStatusValue = document.querySelector('#modal-status').value;
   todos[todoIndex].title = titleValue;
   todos[todoIndex].description = descriptionValue;
   todos[todoIndex].dateDue = dateDueValue;
+  todos[todoIndex].status = modalStatusValue;
   todos[todoIndex].priority = priorityLevelValue;
   localStorage.setItem('todos', JSON.stringify(todos));
   displayProject(projects);
