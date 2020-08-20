@@ -2,11 +2,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 import './style.css';
 import Project from './classes/project';
-import { projectForm, toDoForm, saveBtn } from './dom';
+import { projectForm, toDoForm, saveBtns } from './dom';
 import {
   projects, updateProjectList, createProject, displayProject,
 } from './components/project';
-import { createToDo, saveTodo } from './components/todo';
+import { createToDo, saveTodo, todos } from './components/todo';
 
 
 if (projects.includes('Default') !== true) {
@@ -21,4 +21,7 @@ displayProject(projects);
 
 projectForm.addEventListener('submit', createProject);
 toDoForm.addEventListener('submit', createToDo);
-saveBtn.addEventListener('click', (event) => saveTodo(event, todos));
+
+saveBtns.forEach((button) => {
+  button.addEventListener('click', (event) => saveTodo(event, todos));
+});

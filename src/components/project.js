@@ -1,7 +1,9 @@
 import { projectName, projectsDiv, dropdown } from '../dom';
 import Project from '../classes/project';
 // eslint-disable-next-line import/no-cycle
-import { displayTodos, deleteTodo, todos, viewTodo } from './todo';
+import {
+  displayTodos, deleteTodo, todos, viewTodo,
+} from './todo';
 
 const projects = JSON.parse(localStorage.getItem('projects')) || [];
 
@@ -47,7 +49,6 @@ const displayProject = (projects) => {
     btn.addEventListener('click', (event) => viewTodo(event, todos));
   });
 
-  console.log(viewBtn);
 };
 
 export {

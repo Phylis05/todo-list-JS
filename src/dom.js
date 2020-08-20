@@ -10,9 +10,28 @@ const select = document.querySelector('#select');
 const dueDate = document.querySelector('#due-date');
 const priority = document.querySelector('#priority');
 
-const saveBtn = document.querySelectorAll('#save-btn');
+const saveBtns = document.querySelectorAll('a');
+
+const closeOneModal = (modalId) => {
+  const modal = document.getElementById(modalId);
+  modal.classList.remove('show');
+  modal.setAttribute('aria-hidden', 'true');
+  modal.setAttribute('style', 'display: none');
+  const modalBackdrops = document.getElementsByClassName('modal-backdrop');
+  document.body.removeChild(modalBackdrops[0]);
+};
 
 export {
-  projectName, projectForm, projectsDiv, dropdown, toDoForm, title,
-  description, select, dueDate, priority, saveBtn,
+  projectName,
+  projectForm,
+  projectsDiv,
+  dropdown,
+  toDoForm,
+  title,
+  description,
+  select,
+  dueDate,
+  priority,
+  saveBtns,
+  closeOneModal,
 };

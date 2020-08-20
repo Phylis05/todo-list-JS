@@ -1,5 +1,10 @@
 import {
-  title, description, select, dueDate, priority,
+  title,
+  description,
+  select,
+  dueDate,
+  priority,
+  closeOneModal,
 } from '../dom';
 import TodoItem from '../classes/todo-item';
 // eslint-disable-next-line import/no-cycle
@@ -19,11 +24,11 @@ const createToDo = (event) => {
 
 const colorPriority = (todo) => {
   if (todo.priority === 'High') {
-    return 'red';
+    return '#bf0000';
   } if (todo.priority === 'Medium') {
-    return 'yellow';
+    return '#e0cb0f';
   }
-  return 'green';
+  return '#8adb00';
 };
 
 const displayTodos = (todos, projectIndex) => {
@@ -32,11 +37,11 @@ const displayTodos = (todos, projectIndex) => {
     // eslint-disable-next-line radix
     if (parseInt(todos[i].projectId) === projectIndex) {
       // eslint-disable-next-line no-use-before-define
-      todoList += `<div style='background: ${colorPriority(todos[i])}; margin: 2em; padding: 1em; color: #fff;'>
+      todoList += `<div style='background: ${colorPriority(todos[i])}; margin: 2em; padding: 3em; color: #fff;'>
         <span>${todos[i].title}</span>
-        <span>${todos[i].dueDate}</span>
-        <p><button class = 'delete-btn float-right'  data-index = '${i}'>Delete</button>
-        <button class = 'view-btn float-right' data-toggle="modal" data-index = '${i}' data-target="#projectModal">View/Edit</button>
+        <span class='float-right'>${todos[i].dueDate}</span>
+        <p><button class = 'delete-btn float-right m-2'  data-index = '${i}'>Delete</button>
+        <button class = 'view-btn float-right m-2' data-toggle="modal" data-index = '${i}' data-target="#projectModal">View/Edit</button>
       </div>
       `;
     }
@@ -54,28 +59,29 @@ const viewTodo = (event, todos) => {
   description.innerHTML = `${todos[index].description}`;
   dateDue.innerHTML = `${todos[index].dueDate}`;
   priorityLevel.value = `${todos[index].priority}`;
-
+  const saveBtn = document.querySelectorAll('a')[0];
+  saveBtn.dataset.todoIndex = index;
 };
 
 const saveTodo = (event, todos) => {
-  const { index } = event.target.dataset;
+  const { todoIndex } = event.target.dataset;
   const titleValue = document.querySelector('#title-name').value;
   const descriptionValue = document.querySelector('#description-text').value;
   const dateDueValue = document.querySelector('#date-due').value;
   const priorityLevelValue = document.querySelector('#priority-level').value;
-  todos[index].title = titleValue;
-  todos[index].description = descriptionValue;
-  todos[index].dateDue = dateDueValue;
-  todos[index].priority = priorityLevelValue;
-
-  console.log(todos);
+  todos[todoIndex].title = titleValue;
+  todos[todoIndex].description = descriptionValue;
+  todos[todoIndex].dateDue = dateDueValue;
+  todos[todoIndex].priority = priorityLevelValue;
   localStorage.setItem('todos', JSON.stringify(todos));
+  displayProject(projects);
+  closeOneModal('projectModal');
 };
 
 const deleteTodo = (event, todos) => {
   const { index } = event.target.dataset;
   todos.splice(index, 1);
-  // eslint-disable-next-line no-use-before-define
+  localStorage.setItem('todos', JSON.stringify(todos));
   displayProject(projects);
 };
 
