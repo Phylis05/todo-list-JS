@@ -2,7 +2,7 @@
 The todo-list project is from the [Odin curriculum](https://www.theodinproject.com/courses/javascript/lessons/todo-list) that implements concepts of Single Responsibility and Tightly Coupled Objects in Javascript.
 
 ## Web App Screenshots
-![](./images/app_screenshot.png)
+![](./src/images/app_screenshot.png)
 
 
 ## Built With
