@@ -6,6 +6,13 @@ import {
   priority,
   stat,
   closeOneModal,
+  preventDefault,
+  dataReset,
+  priorityLevel,
+  modalStatus,
+  dateDue,
+  descriptionText,
+  titleName,
 } from '../dom';
 import TodoItem from '../classes/todo-item';
 // eslint-disable-next-line import/no-cycle
@@ -15,7 +22,7 @@ import '../style.css';
 const todos = JSON.parse(localStorage.getItem('todos')) || [];
 
 const createToDo = (event) => {
-  event.preventDefault();
+  preventDefault(event);
   const newTodo = new TodoItem(
     title.value,
     description.value,
@@ -27,7 +34,7 @@ const createToDo = (event) => {
   todos.push(newTodo);
   localStorage.setItem('todos', JSON.stringify(todos));
   displayProject(projects);
-  event.target.reset();
+  dataReset(event);
 };
 
 const colorPriority = (todo) => {
@@ -61,12 +68,8 @@ const displayTodos = (todos, projectIndex) => {
 
 const viewTodo = (event, todos) => {
   const { index } = event.target.dataset;
-  const title = document.querySelector('#title-name');
-  const description = document.querySelector('#description-text');
-  const dateDue = document.querySelector('#date-due');
-  const priorityLevel = document.querySelector('#priority-level');
-  title.value = `${todos[index].title}`;
-  description.innerHTML = `${todos[index].description}`;
+  titleName.value = `${todos[index].title}`;
+  descriptionText.innerHTML = `${todos[index].description}`;
   dateDue.innerHTML = `${todos[index].dueDate}`;
   priorityLevel.value = `${todos[index].priority}`;
   const saveBtn = document.querySelectorAll('a')[0];
@@ -75,11 +78,11 @@ const viewTodo = (event, todos) => {
 
 const saveTodo = (event, todos) => {
   const { todoIndex } = event.target.dataset;
-  const titleValue = document.querySelector('#title-name').value;
-  const descriptionValue = document.querySelector('#description-text').value;
-  const dateDueValue = document.querySelector('#date-due').value;
-  const priorityLevelValue = document.querySelector('#priority-level').value;
-  const modalStatusValue = document.querySelector('#modal-status').value;
+  const titleValue = titleName.value;
+  const descriptionValue = descriptionText.value;
+  const dateDueValue = dateDue.value;
+  const priorityLevelValue = priorityLevel.value;
+  const modalStatusValue = modalStatus.value;
   todos[todoIndex].title = titleValue;
   todos[todoIndex].description = descriptionValue;
   todos[todoIndex].dateDue = dateDueValue;

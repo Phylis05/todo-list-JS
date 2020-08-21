@@ -13,6 +13,13 @@ const stat = document.querySelector('#status');
 
 const saveBtns = document.querySelectorAll('a');
 
+const titleName = document.querySelector('#title-name');
+const descriptionText = document.querySelector('#description-text');
+const dateDue = document.querySelector('#date-due');
+const modalStatus = document.querySelector('#modal-status');
+const priorityLevel = document.querySelector('#priority-level');
+
+
 const closeOneModal = (modalId) => {
   const modal = document.getElementById(modalId);
   modal.classList.remove('show');
@@ -20,6 +27,14 @@ const closeOneModal = (modalId) => {
   modal.setAttribute('style', 'display: none');
   const modalBackdrops = document.getElementsByClassName('modal-backdrop');
   document.body.removeChild(modalBackdrops[0]);
+};
+
+const preventDefault = (event) => {
+  event.preventDefault();
+};
+
+const dataReset = (event) => {
+  event.target.reset();
 };
 
 export {
@@ -36,4 +51,11 @@ export {
   saveBtns,
   stat,
   closeOneModal,
+  preventDefault,
+  dataReset,
+  priorityLevel,
+  modalStatus,
+  dateDue,
+  descriptionText,
+  titleName,
 };

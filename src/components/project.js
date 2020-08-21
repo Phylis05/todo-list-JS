@@ -1,4 +1,6 @@
-import { projectName, projectsDiv, dropdown } from '../dom';
+import {
+  projectName, projectsDiv, dropdown, preventDefault, dataReset,
+} from '../dom';
 import Project from '../classes/project';
 // eslint-disable-next-line import/no-cycle
 import {
@@ -12,7 +14,7 @@ const createProject = (event) => {
     // eslint-disable-next-line no-alert
     alert('Project must have a name');
   }
-  event.preventDefault();
+  preventDefault(event);
 
   const newProject = new Project(projectName.value);
   if (projects.includes(newProject.name) !== true) {
@@ -23,7 +25,7 @@ const createProject = (event) => {
   displayProject(projects);
   // eslint-disable-next-line no-use-before-define
   updateProjectList(projects);
-  event.target.reset();
+  dataReset(event);
 };
 
 const updateProjectList = (projects) => {
