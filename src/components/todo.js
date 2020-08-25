@@ -6,7 +6,6 @@ import {
   dueDate,
   priority,
   stat,
-  closeOneModal,
   preventDefault,
   dataReset,
   priorityLevel,
@@ -37,35 +36,6 @@ const createToDo = (event) => {
   dataReset(event);
 };
 
-const colorPriority = (todo) => {
-  if (todo.priority === 'High') {
-    return '#bf0000';
-  } if (todo.priority === 'Medium') {
-    return '#e0cb0f';
-  }
-  return '#8adb00';
-};
-
-const displayTodos = (todos, projectIndex) => {
-  let todoList = '';
-  for (let i = 0; i < todos.length; i += 1) {
-    // eslint-disable-next-line radix
-    if (parseInt(todos[i].projectId) === projectIndex) {
-      // eslint-disable-next-line no-use-before-define
-      todoList += `<div style='background: ${colorPriority(todos[i])};' class='todo-div'>
-        <span class='${todos[i].status === '1' ? 'complete' : ''}'>${todos[i].title}</span>
-        <p><span class='float-right'>${todos[i].dueDate}</span></p>
-        <p>
-          <button class='delete-btn float-right m-2'  data-index='${i}'>Delete</button>
-          <button class='view-btn float-right m-2' data-toggle="modal" data-index='${i}' data-target="#projectModal">View/Edit</button>
-        </p>
-      </div>
-      `;
-    }
-  }
-  return todoList;
-};
-
 const viewTodo = (event, todos) => {
   const { index } = event.target.dataset;
   titleName.value = `${todos[index].title}`;
@@ -85,12 +55,11 @@ const saveTodo = (event, todos) => {
   const modalStatusValue = modalStatus.value;
   todos[todoIndex].title = titleValue;
   todos[todoIndex].description = descriptionValue;
-  todos[todoIndex].dateDue = dateDueValue;
+  todos[todoIndex].dueDate = dateDueValue;
   todos[todoIndex].status = modalStatusValue;
   todos[todoIndex].priority = priorityLevelValue;
   localStorage.setItem('todos', JSON.stringify(todos));
   displayProject(projects);
-  closeOneModal('projectModal');
 };
 
 const deleteTodo = (event, todos) => {
@@ -101,5 +70,5 @@ const deleteTodo = (event, todos) => {
 };
 
 export {
-  displayTodos, deleteTodo, todos, createToDo, viewTodo, saveTodo,
+  deleteTodo, todos, createToDo, viewTodo, saveTodo,
 };

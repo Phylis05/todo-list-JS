@@ -2,15 +2,12 @@
 /* eslint-disable import/no-cycle */
 import {
   projectName,
-  projectsDiv,
-  dropdown,
   preventDefault,
   dataReset,
-  deleteEventListener,
-  viewEventListener,
+  createProjectDropdown,
+  displayProject,
 } from '../dom';
 import Project from '../classes/project';
-import { displayTodos, todos } from './todo';
 
 const projects = JSON.parse(localStorage.getItem('projects')) || [];
 
@@ -18,7 +15,7 @@ const createProject = (event) => {
   preventDefault(event);
 
   const newProject = new Project(projectName.value);
-  if (projects.includes(newProject.name) !== true) {
+  if (!projects.includes(newProject.name)) {
     projects.push(newProject.name);
     localStorage.setItem('projects', JSON.stringify(projects));
   }
@@ -28,25 +25,7 @@ const createProject = (event) => {
 };
 
 const updateProjectList = (projects) => {
-  for (let index = 0; index < projects.length; index += 1) {
-    const project = projects[index];
-    const option = document.createElement('option');
-    option.setAttribute('value', index);
-    option.innerHTML = project;
-    dropdown.appendChild(option);
-  }
-};
-
-const displayProject = (projects) => {
-  projectsDiv.innerHTML = projects.map((name, index) => `<div class="card mb-2">
-            <div class="card-body" data-index="${index}">
-               <h5 class="card-title">${name}</h5>
-               ${displayTodos(todos, index)}
-
-            </div>
-          </div>`).join('');
-  deleteEventListener();
-  viewEventListener();
+  createProjectDropdown(projects);
 };
 
 export {
