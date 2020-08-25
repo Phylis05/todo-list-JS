@@ -28,9 +28,13 @@ const createProject = (event) => {
 };
 
 const updateProjectList = (projects) => {
-  dropdown.innerHTML = projects.map((project, index) => `<option
-  value="${index}">${project}</option>
-  `).join('');
+  for (let index = 0; index < projects.length; index += 1) {
+    const project = projects[index];
+    const option = document.createElement('option');
+    option.setAttribute('value', index);
+    option.innerHTML = project;
+    dropdown.appendChild(option);
+  }
 };
 
 const displayProject = (projects) => {
