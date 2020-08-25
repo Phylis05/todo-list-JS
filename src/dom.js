@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/no-cycle
+import { deleteTodo, viewTodo, todos } from './components/todo';
+
 const projectName = document.querySelector('#name');
 const projectForm = document.querySelector('#project-form');
 const projectsDiv = document.querySelector('.projects');
@@ -37,6 +40,30 @@ const dataReset = (event) => {
   event.target.reset();
 };
 
+const deleteEventListener = () => {
+  const deleteBtns = document.querySelectorAll('.delete-btn');
+  deleteBtns.forEach((button) => {
+    // eslint-disable-next-line no-use-before-define
+    button.removeEventListener('click', (event) => deleteTodo(event, todos));
+    button.addEventListener('click', (event) => deleteTodo(event, todos));
+  });
+};
+
+const viewEventListener = () => {
+  const viewBtn = document.querySelectorAll('.view-btn');
+  viewBtn.forEach((btn) => {
+    btn.removeEventListener('click', (event) => viewTodo(event, todos));
+    btn.addEventListener('click', (event) => viewTodo(event, todos));
+  });
+};
+
+// const viewBtn = document.querySelectorAll('.view-btn');
+
+// viewBtn.forEach((btn) => {
+//   btn.removeEventListener('click', (event) => viewTodo(event, todos));
+//   btn.addEventListener('click', (event) => viewTodo(event, todos));
+// }
+
 export {
   projectName,
   projectForm,
@@ -58,4 +85,6 @@ export {
   dateDue,
   descriptionText,
   titleName,
+  deleteEventListener,
+  viewEventListener,
 };

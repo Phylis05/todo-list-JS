@@ -1,19 +1,20 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable import/no-cycle */
 import {
-  projectName, projectsDiv, dropdown, preventDefault, dataReset,
+  projectName,
+  projectsDiv,
+  dropdown,
+  preventDefault,
+  dataReset,
+  deleteEventListener,
+  viewEventListener,
 } from '../dom';
 import Project from '../classes/project';
-// eslint-disable-next-line import/no-cycle
-import {
-  displayTodos, deleteTodo, todos, viewTodo,
-} from './todo';
+import { displayTodos, todos } from './todo';
 
 const projects = JSON.parse(localStorage.getItem('projects')) || [];
 
 const createProject = (event) => {
-  if (projectName.value === '') {
-    // eslint-disable-next-line no-alert
-    alert('Project must have a name');
-  }
   preventDefault(event);
 
   const newProject = new Project(projectName.value);
@@ -21,9 +22,7 @@ const createProject = (event) => {
     projects.push(newProject.name);
     localStorage.setItem('projects', JSON.stringify(projects));
   }
-  // eslint-disable-next-line no-use-before-define
   displayProject(projects);
-  // eslint-disable-next-line no-use-before-define
   updateProjectList(projects);
   dataReset(event);
 };
@@ -42,18 +41,8 @@ const displayProject = (projects) => {
 
             </div>
           </div>`).join('');
-  const deleteBtns = document.querySelectorAll('.delete-btn');
-  deleteBtns.forEach((button) => {
-    // eslint-disable-next-line no-use-before-define
-    button.removeEventListener('click', (event) => deleteTodo(event, todos));
-    button.addEventListener('click', (event) => deleteTodo(event, todos));
-  });
-  const viewBtn = document.querySelectorAll('.view-btn');
-
-  viewBtn.forEach((btn) => {
-    btn.removeEventListener('click', (event) => viewTodo(event, todos));
-    btn.addEventListener('click', (event) => viewTodo(event, todos));
-  });
+  deleteEventListener();
+  viewEventListener();
 };
 
 export {

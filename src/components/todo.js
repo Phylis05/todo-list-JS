@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import {
   title,
   description,
@@ -15,7 +16,6 @@ import {
   titleName,
 } from '../dom';
 import TodoItem from '../classes/todo-item';
-// eslint-disable-next-line import/no-cycle
 import { projects, displayProject } from './project';
 import '../style.css';
 
