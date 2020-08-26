@@ -15,7 +15,7 @@ The todo-list project is from the [Odin curriculum](https://www.theodinproject.c
 
 ## Live Demo
 
-Click [here](https://rawcdn.githack.com/Phylis05/todo-list-JS/f80e63eec4072fe5839d669b2c69b8ab93256606/dist/index.html) to visit a live version of the web app.
+Click [here](https://rawcdn.githack.com/Phylis05/todo-list-JS/bc5d2b5f3feb383b1904e4dc6ad3f55388b366e7/dist/index.html) to visit a live version of the web app.
 
 ## Getting Started
 
