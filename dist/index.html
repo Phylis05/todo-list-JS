@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do List</title>
+</head>
+<body>
+  <div class="container">
+    <header>
+        <h1 class="text-center mt-5">To do List</h1>
+    </header>
+    <main>
+      <div class="row h-100 mt-5">
+
+        <div class="col-lg-6">
+        <h3 class="text-center">Create Project</h3>
+          <form action="" id= "project-form">
+            <label for="name">Project name:</label>
+            <input type="text" name="name" class="form-control" id="name" required>
+            <button type="submit" class= "btn btn-primary mt-2">Create project</button>
+          </form>
+
+
+          <h3 class="text-center mt-5">Create Todo </h3>
+          <form action="" id="todo-form">
+              <label for="title">Title:</label>
+              <input type="text" name="title"  class="form-control" id="title" required>
+
+              <label for="description">Description:</label>
+              <input type="text" name="description" class="form-control" id="description" required>
+
+              <label for="select">Projects:</label>
+              <select class="browser-default custom-select" id="select"></select>
+
+              <label for="due-date">Due Date:</label>
+              <input type="date" name="due-date"  class="form-control" id="due-date">
+
+              <div class="form-group">
+                <label for="status" class="col-form-label">Status:</label>
+                <select class="form-control" id="status">
+                  <option value="0">Incomplete</option>
+                  <option value="1">Complete</option>
+                </select>
+              </div>
+
+              <label for="priority">Priority:</label>
+              <select class="form-control" id="priority">
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+              </select>
+              <button type="submit" class="btn btn-primary mt-2">Create todo</button>
+
+          </form>
+        </div>
+
+        <div class="col-lg-6 mt-4 projects">
+
+        </div>
+
+        <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="projectModalLabel">To Do</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="title-name" class="col-form-label">Title:</label>
+                    <input type="text" class="form-control" name="title-name" id="title-name">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="description-text" class="col-form-label">Description:</label>
+                    <textarea class="form-control" id="description-text"></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="date-due" class="col-form-label">Due Date:</label>
+                    <input type='date' class="form-control" id="date-due"></input>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="modal-status" class="col-form-label">Status:</label>
+                    <select class="form-control" id="modal-status">
+                      <option value="1">Complete</option>
+                      <option value="0">Incomplete</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="priority-level" class="col-form-label">Priority:</label>
+                    <select class="form-control" id="priority-level">
+                      <option>Low</option>
+                      <option>Medium</option>
+                      <option>High</option>
+                    </select>
+                  </div>
+
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="close-btn" data-dismiss="modal">Close</button>
+                <a href="#" type="button" data-todo-index="-1" class="btn btn-primary" data-dismiss="modal">Save</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </main>
+  </div>
+  <script src ='main.js'></script>
+</body>
+</html>

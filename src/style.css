@@ -1,0 +1,20 @@
+main {
+  height: 100%;
+}
+
+.todo-div {
+  margin: 1em;
+  padding: 3em;
+  color: #fff;
+}
+
+.complete {
+  text-decoration: line-through;
+}
+
+@media only screen and (max-width: 768px) {
+  .todo-div {
+    font-size: 10px;
+    padding: 4em;
+  }
+}
