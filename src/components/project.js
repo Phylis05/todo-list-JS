@@ -7,14 +7,14 @@ import {
   createProjectDropdown,
   displayProject,
 } from '../dom';
-import Project from '../classes/project';
+import project from '../classes/project';
 
 const projects = JSON.parse(localStorage.getItem('projects')) || [];
 
 const createProject = (event) => {
   preventDefault(event);
 
-  const newProject = new Project(projectName.value);
+  const newProject = project(projectName.value);
   if (!projects.includes(newProject.name)) {
     projects.push(newProject.name);
     localStorage.setItem('projects', JSON.stringify(projects));

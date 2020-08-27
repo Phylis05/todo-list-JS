@@ -14,7 +14,7 @@ import {
   descriptionText,
   titleName,
 } from '../dom';
-import TodoItem from '../classes/todo-item';
+import todoItem from '../classes/todo-item';
 import { projects, displayProject } from './project';
 import '../style.css';
 
@@ -22,7 +22,7 @@ const todos = JSON.parse(localStorage.getItem('todos')) || [];
 
 const createToDo = (event) => {
   preventDefault(event);
-  const newTodo = new TodoItem(
+  const newTodo = todoItem(
     title.value,
     description.value,
     dueDate.value,
